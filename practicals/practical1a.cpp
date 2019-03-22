@@ -2,6 +2,13 @@
 
 using namespace std;
 
+inline void printArray(int *array, int size) {
+    cout<<"{ ";
+    for(int i=0; i<size; i++ ) 
+        cout<<array[i]<<' ';
+    cout<<"}"<<endl;
+}
+
 int insertionSort(int* array, int size) {
     int comparisons = 0;
     int current,j;
@@ -20,11 +27,16 @@ int insertionSort(int* array, int size) {
 }
 
 int main() {
-    int array[] = {0,1,2,3,4,5,6,7,8,9};
-    cout<<"No of comparisons: "<<insertionSort(array, 10)<<endl;
-    for(int i=0;i<10;i++) {
-        cout<<array[i]<<" ";
+    int size;
+    int *array;
+    cout<<"Enter size of array: ";
+    cin>>size;
+    array = new int[size];
+    cout<<"Enter array elements separated by space: ";
+    for(int i=0; i<size; i++) {
+        cin>>array[i];
     }
-    cout<<endl;
+    cout<<"Number of comparisons: "<<insertionSort(array, size)<<endl;
+    printArray(array, size);
     return 0;
 }
