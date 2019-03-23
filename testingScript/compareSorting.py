@@ -51,7 +51,7 @@ for i in range(len(testData)):
     comparisonsQuickSort = int(comparisonsQuickSort)
     # print log output
     output = str(inputArraySize)+"\t|\t"
-    output += str(comparisonsInsertionSort)+"\t|\t\t" 
+    output += str(comparisonsInsertionSort)+"\t|\t" 
     output += str(comparisonsMergeSort) + "\t|\t" 
     output += str(comparisonsHeapSort) + "\t|\t"
     output += str(comparisonsQuickSort)
