@@ -4,6 +4,15 @@
 
 using namespace std;
 
+int comparisons = 0;
+
+inline void printArray(int *array, int size) {
+    cout<<"{ ";
+    for(int i=0; i<size; i++ ) 
+        cout<<array[i]<<' ';
+    cout<<"}"<<endl;
+}
+
 inline void swap(int& a,int& b) {
     int c = a;
     a = b;
@@ -16,6 +25,7 @@ int partition(int* array, int start, int end) {
     for(int j=start; j<end; j++) {
         if(array[j] <= pivotElement) {
             i++;
+            comparisons+=2;
             swap(array[i], array[j]);
         }
     }
@@ -32,6 +42,7 @@ int randomizedPartition(int* array, int start, int end) {
 
 void randomizedQuickSort(int* array, int start, int end) {
     if(start<end) {
+        comparisons++;
         int pivotIndex = randomizedPartition(array, start, end);
         randomizedQuickSort(array, start, pivotIndex-1);
         randomizedQuickSort(array, pivotIndex+1, end);
@@ -39,11 +50,17 @@ void randomizedQuickSort(int* array, int start, int end) {
 }
 
 int main() {
-    srand(time(0));
-    int array[] = {9,8,7,6,5,4,3,2,1,0};
-    randomizedQuickSort(array, 0, 9);
-    for(int i=0; i<10; i++) {
-        cout<<array[i]<<" ";
+    int size;
+    int *array;
+    cout<<"Enter size of array: ";
+    cin>>size;
+    array = new int[size];
+    cout<<"Enter array elements separated by space: ";
+    for(int i=0; i<size; i++) {
+        cin>>array[i];
     }
-    cout<<endl;
+    randomizedQuickSort(array, 0, size-1);
+    cout<<"Number of comparisons: "<<comparisons<<endl;
+    printArray(array, size);
+    return 0;
 }
