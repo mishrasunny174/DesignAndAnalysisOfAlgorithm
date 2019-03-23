@@ -34,3 +34,6 @@
 # Environments
 .vscode/
 bin/
+lib/
+include/
+env/

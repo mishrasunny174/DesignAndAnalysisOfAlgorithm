@@ -21,7 +21,7 @@ void merge(int* array, int start, int mid, int end) {
         } else {
             tempArray[counter3++] = array[counter2++];
         }
-        comparisons+=1;
+        comparisons+=3;
     }
     while(counter1<=mid) {
         comparisons+=1;
