@@ -24,9 +24,10 @@ void countSort(int* array, int size, int range) {
     for(int i=1; i<=range; i++) {
         countArray[i] = countArray[i-1]+1;
     }
-    
+
     for(int i=0; i<size; i++) {
         tempArray[countArray[array[i]]-1] = array[i];
+        countArray[array[i]]--;
     }
 
 
