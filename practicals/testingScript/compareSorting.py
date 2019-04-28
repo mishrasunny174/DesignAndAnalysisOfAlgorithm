@@ -3,11 +3,11 @@ from pwn import *
 import matplotlib.pyplot as mp
 
 context.log_level = "critical"
-testData = [[ str(random.randint(0,100)) for _ in range(0,i)] for i in range(1, 1001, 10)]
-insertionSortComparisons = [[0],[0]]
-mergeSortComparisons = [[0],[0]]
-heapSortComparisons = [[0],[0]]
-quickSortComparisons = [[0],[0]]
+testData = [[ str(random.randint(0,100)) for _ in range(0,i)] for i in range(300, 1000, 7)]
+insertionSortComparisons = [[],[]]
+mergeSortComparisons = [[],[]]
+heapSortComparisons = [[],[]]
+quickSortComparisons = [[],[]]
 print "INPUT SIZE | INSERTION SORT | MERGE SORT | HEAP SORT | QUICK SORT"
 for i in range(len(testData)):
     # ccreating input data
