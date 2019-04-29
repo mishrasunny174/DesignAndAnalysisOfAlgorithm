@@ -30,6 +30,11 @@ protected:
     void rightRotate(RBTreeNode* node);
     void traverse(RBTreeNode* node);
     void fixup(RBTreeNode* node);
+    string getColor(Color color) {
+        if(color == RED) 
+            return "RED";
+        return "BLACK";
+    }
 public:
     RBTree() {
         this->root = NULL;
@@ -46,27 +51,64 @@ public:
         if(this->root == NULL) {
             cout<<"ERROR: tree is empty"<<endl;
         } else {
+            cout<<"Inorder traversal is: ";
             this->traverse(this->root);
+            cout<<endl;
+        }
+    }
+    void search(int value) {
+        if(this->root==NULL) {
+            cout<<"ERROR: tree is empty";
+        } else {
+            RBTreeNode *node = this->root;
+            while(node!=NULL) {
+                if(node->value == value) {
+                    cout<<value<<" found in the tree, the node has color "<<this->getColor(node->color)<<endl;
+                    return;
+                } else if(value < node->value) {
+                    node = node->leftChild;
+                } else {
+                    node = node->rightChild;
+                }
+            }
+            cout<<value<<" not found in the tree"<<endl;
         }
     }
 };
 
 int main(int argc, char** argv){
     RBTree tree;
-    tree.insert(10);
-    // tree.traverse();
-    tree.insert(12);
-    // tree.traverse();
-    tree.insert(7);
-    // tree.traverse();
-    tree.insert(20);
-    // tree.traverse();
-    tree.insert(30);
-    // tree.traverse();
-    tree.insert(15);
-    // tree.traverse();
-    tree.insert(1);
-    tree.traverse();
+    int choice, value;
+    while(true) {
+        cout<<"\n### MENU ###"<<endl<<endl;
+        cout<<"1) Insert a new element"<<endl;
+        cout<<"2) Traverse (inorder the tree)"<<endl;
+        cout<<"3) Search for a element in tree"<<endl;
+        cout<<"Enter 0 to exit..."<<endl;
+        cout<<"Enter you choice: ";
+        cin>>choice;
+        switch (choice)
+        {
+            case 0:
+                return 0;
+            case 1:
+                cout<<"Enter item to be inserted: ";
+                cin>>value;
+                tree.insert(value);
+                break;
+            case 2:
+                tree.traverse();
+                break;
+            case 3:
+                cout<<"Enter item to be searched: ";
+                cin>>value;
+                tree.search(value);
+                break;
+            default:
+                cout<<"ERROR: wrong choice try again..."<<endl;
+                break;
+        }
+    }
     return 0;
 }
 
@@ -164,7 +206,7 @@ void RBTree::traverse(RBTreeNode* node) {
     if(node->leftChild!=NULL) {
         this->traverse(node->leftChild);
     }
-    cout<<node->value<<":"<<node->color<<" ";
+    cout<<node->value<<":"<<this->getColor(node->color)<<" ";
     if(node->rightChild!=NULL) {
         this->traverse(node->rightChild);
     }
